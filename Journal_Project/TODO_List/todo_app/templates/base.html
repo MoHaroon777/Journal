@@ -1,0 +1,35 @@
+<!-- todo_list/todo_app/templates/base.html -->
+<!-- Base template -->
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Simple.css-->
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link href="{% static 'src/style.css' %}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Django To-do Lists</title> 
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+</head>
+
+<body class='w-screen'>
+    <div>
+        <h1 onclick="location.href='{% url "index" %}'">
+            Django To-do Lists
+        </h1>
+    </div>
+    <div>
+        {% block content %}
+        {% load bootstrap4 %}
+
+        This content will be replaced by different html code for each page.
+        {% endblock %}
+    </div>
+</body>
+
+</html>
