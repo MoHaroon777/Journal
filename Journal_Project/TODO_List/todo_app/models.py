@@ -3,6 +3,9 @@ from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.urls import reverse
+from markdownfield.models import MarkdownField, RenderedMarkdownField
+from markdownfield.validators import VALIDATOR_STANDARD
+
 
 def one_week_hence():
     return timezone.now() + timezone.timedelta(days=7)
@@ -34,3 +37,7 @@ class ToDoItem(models.Model):
 
     class Meta:
         ordering = ["due"]
+        
+class Editor(models.Model):
+    text = MarkdownField(rendered_field='rendered_text', validators=[VALIDATOR_STANDARD])
+    rendered_text = RenderedMarkdownField()

@@ -1,55 +1,43 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
-<div class="flex h-screen bg-gray-100">
+<div class="flex h-screen w-screen bg-gray-100">
     <!-- Sidebar -->
     <div class="w-64 bg-white shadow-lg">
-        <div class="flex items-center justify-center h-16 border-b">
-            <svg class="w-8 h-8 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 12l2-2m0 0l7-7 7 7m-9 9V2m0 20l7-7-7-7" />
-            </svg>
+        <div class="flex items-center justify-center h-30 border-b">
+            <img width="100" height="100" src="{% static 'img/journal.svg' %}" alt="journal"/>
         </div>
         <div class="mt-5">
             <div class="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-lg">
-                <svg class="w-5 h-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 12l2-2m0 0l7-7 7 7m-9 9V2m0 20l7-7-7-7" />
-                </svg>
+                <img width="45" height="45" src="{% static 'img/dashboard.svg' %}" alt="dashboard"/>
                 <span class="ml-4">Dashboard</span>
             </div>
             <div class="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-100 rounded-lg">
-                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 3.13a4 4 0 00-4-4 4 4 0 00-4 4 4 4 0 004 4h4a4 4 0 000-8zM4 21v-2a4 4 0 014-4h4a4 4 0 014 4v2M16 3.13a4 4 0 00-4-4 4 4 0 00-4 4 4 4 0 004 4h4a4 4 0 000-8z" />
-                </svg>
+                <img width="45" height="45" src="{% static 'img/team.svg' %}" alt="Team"/>
                 <span class="ml-4">Team</span>
             </div>
             <div class="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-100 rounded-lg">
-                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
-                </svg>
+                <img width="45" height="45" src="{% static 'img/project.svg' %}" alt="Project"/>
                 <span class="ml-4">Projects</span>
             </div>
             <div class="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-100 rounded-lg">
-                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 10.5a8.38 8.38 0 01-1.45 4.68L12 21.5 4.45 15.18A8.38 8.38 0 013 10.5C3 5.79 7.03 2 12 2s9 3.79 9 8.5z" />
-                </svg>
+                <img width="45" height="45" src="{% static 'img/calendar.svg' %}" alt="calendar"/>
                 <span class="ml-4">Calendar</span>
             </div>
             <div class="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-100 rounded-lg">
-                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 21V7a2 2 0 00-2-2H5a2 2 0 00-2 2v14M12 3v5M6 3v5M18 3v5M2 10h20" />
-                </svg>
+                <img width="45" height="40" src="{% static 'img/document.svg' %}" alt="documents"/>
                 <span class="ml-4">Documents</span>
             </div>
             <div class="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-100 rounded-lg">
-                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2v-4M14 2h2a2 2 0 012 2v4M7 13h8M7 17h4" />
-                </svg>
+                <img width="45" height="40" src="{% static 'img/report.svg' %}" alt="report"/>
                 <span class="ml-4">Reports</span>
             </div>
         </div>
         <div class="mt-5">
-            <h6 class="px-4 text-xs font-bold uppercase text-gray-600">Your teams</h6>
+            <h6 class="px-4 text-xs font-bold uppercase text-gray-600" >Your teams <img class="flex" width="45" height="45" src="{% static 'img/beta.svg' %}" alt="beta"/></h6>
+            
             <div class="px-4 mt-2">
-                <div class="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                {% comment %} <div class="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-100 rounded-lg">
                     <span class="flex items-center justify-center w-6 h-6 text-xs font-bold text-gray-700 bg-gray-300 rounded-full">H</span>
                     <span class="ml-4">Heroicons</span>
                 </div>
@@ -60,19 +48,25 @@
                 <div class="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-100 rounded-lg">
                     <span class="flex items-center justify-center w-6 h-6 text-xs font-bold text-gray-700 bg-gray-300 rounded-full">W</span>
                     <span class="ml-4">Workcation</span>
-                </div>
+                </div> {% endcomment %}
             </div>
-        </div>
-        <div class="absolute bottom-0 flex items-center justify-center w-full py-4 bg-gray-50 border-t">
-            <img src="https://via.placeholder.com/32" alt="User" class="w-8 h-8 rounded-full">
-            <span class="ml-2 text-sm text-gray-600">Tom Cook</span>
         </div>
     </div>
     
     <!-- Main content -->
-    <div class="flex-1 p-10 overflow-y-auto">
-        <div class="h-96 bg-gray-100 border-2 border-dashed rounded-lg"></div>
-        <div class="h-96 bg-gray-100 border-2 border-dashed rounded-lg mt-4"></div>
+    <div class="flex">
+        <!-- Sidebar and other content omitted for brevity -->
+    
+        <!-- Main content -->
+        <div class="flex-1 p-10 overflow-y-auto ">
+            <textarea id="markdown-editor"></textarea>
+        </div>
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+        <script>
+            var easyMDE = new EasyMDE({element: document.getElementById('markdown-editor')});
+        </script>
     </div>
 </div>
 {% endblock %}
