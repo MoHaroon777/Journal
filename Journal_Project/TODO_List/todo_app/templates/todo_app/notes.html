@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="flex h-screen bg-gray-100">
+    <!-- Sidebar -->
+
+        <div class="p-10 editor">
+            <textarea id="markdown-editor" alt="markdown_editor"></textarea>
+        </div>        
+    </div>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+        <script>
+            var easyMDE = new EasyMDE({element: document.getElementById('markdown-editor')});
+        </script>
+</div>
+{% endblock %}

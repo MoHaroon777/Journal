@@ -40,12 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'todo_app',
-    'ckeditor',
-    'ckeditor_uploader',
     'crispy_forms',
     'bootstrap4',
     "django_browser_reload",
     "markdownfield",
+    "django_rename_app",
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4' 
 MIDDLEWARE = [
@@ -89,7 +88,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -141,15 +139,3 @@ STATICFILES_FINDERS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-
-## THIS IS THE CKEDITOR CONFIGURATION
-CKEDITOR_UPLOAD_PATH = "uploads/"
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'full',
-        'height': 300,
-        'width': '100%',
-    },
-}

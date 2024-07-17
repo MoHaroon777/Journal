@@ -4,10 +4,9 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
 from .models import ToDoItem
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 class ToDoItemForm(forms.ModelForm):
-    description = forms.CharField(widget=CKEditorUploadingWidget())
+    description = forms.CharField(widget=forms.Textarea)
 
     class Meta:
         model = ToDoItem

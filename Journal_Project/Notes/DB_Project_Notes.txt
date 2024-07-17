@@ -1,2 +1,7 @@
 DB_Project
 
+Idea 1. Hosting
+ 1. host the website online
+
+idea2 - VPN
+ 1. Set up NordVpn and allow Mesh to connect to local network remotely

@@ -82,9 +82,10 @@ class ItemDeleteView(DeleteView):
         context["todo_list"] = self.object.todo_list
         return context
 
-class DashBoardView(ListView):
+class NotesView(ListView):
     model = ToDoItem
-    template_name = 'todo_app/dashboard.html'
+    template_name = 'todo_app/notes.html'
+    
 
     # def get_queryset(self):
     #     return ToDoItem.objects.filter(due__lte=timezone.now())
