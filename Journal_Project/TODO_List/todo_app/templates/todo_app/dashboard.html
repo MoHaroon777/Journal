@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% for entry in journal_list %}
+        <div class="bg-white p-2 rounded-lg shadow-md flex flex-col justify-between">
+            <div>
+                <div class="flex items-center space-x-4 mx-2">
+                    {% comment %} <img src="{{ entry.author.image_url }}" alt="User Avatar" class="w-12 h-12 rounded-full"> {% endcomment %}
+                    <div>
+                        <h3 class="text-lg font-semibold">{{ entry.title }}</h3>
+                    </div>
+                </div>
+                <p class="ml-2 text-gray-500">{{ entry.content }}</p>
+            </div>
+            <div class="mt-5 flex bottom-right">
+                {% comment %} <div class="flex space-x-4">
+                    <a href="mailto:author" class="flex items-center text-blue-500 hover:underline">
+                        {{ entry.author.email }}
+                        <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 3a2 2 0 012-2h12a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V3zm2 0v1.217l6 3.73 6-3.73V3H4zm0 3.305v9.755h12V6.305l-6 3.73-6-3.73z"/>
+                        </svg>
+                        Email
+                    </a>
+                    <a href="tel:phone" class="flex items-center text-blue-500 hover:underline">
+                        {{ entry.author.phone }}
+                        <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 3a2 2 0 012-2h12a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V3zm14 1H4v12h12V4zM7 5h2v5H7V5zm4 0h2v5h-2V5z"/>
+                        </svg>
+                        Call
+                    </a>
+                </div> {% endcomment %}
+                <p class="mb-0 text-gray-500 text-xs" style="font-family: sans-serif">{{ entry.created_date }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

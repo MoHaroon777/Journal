@@ -1,0 +1,82 @@
+unit notes;
+
+interface
+
+uses
+  System.SysUtils, System.UITypes, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error,
+  FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
+  FireDAC.Phys, FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef, FireDAC.VCLUI.Wait, Data.DB,
+  FireDAC.Comp.Client, FireDAC.Comp.DataSet, vcl.Dialogs, DataConnUnit;
+
+  type
+  TDataModule = class(TObject)
+    private
+      fMapper: TDataMap;
+      fConnection: TFDConnection;
+      fQuery: TFDQuery;
+      fTable: TFDTable;
+    function GetQuery: TFDQuery;
+    procedure SetQuery(const AValue: TFDQuery);
+    procedure SetDataUpMapping;
+    public
+      procedure InitDatabase;
+      procedure saveNotesToDatabase(NoteText: string);
+      function GetAllNotes(ATable: string): TFDTable;
+      property Query: TFDQuery read GetQuery write SetQuery;
+  end;
+
+var
+  DataModule: TDataModule;
+
+implementation
+
+
+{ TDataModule }
+
+function TDataModule.GetAllNotes(ATable: string): TFDTable;
+begin
+  try
+    fTable.TableName := ATable;
+    fTable.Open;
+    Result := fTable;
+  except on E: Exception do
+    begin
+      MessageDlg('Error opening table: ' + E.Message, mtError, [mbOK], 0);
+      Result := nil;
+    end;
+  end;
+
+end;
+
+function TDataModule.GetQuery: TFDQuery;
+begin
+  result := fQuery;
+end;
+
+procedure TDataModule.InitDatabase;
+begin
+  fConnection := fMapper.connection;
+  fMapper.Query.Text := 'CREATE TABLE IF NOT EXISTS NOTES ( ID INTEGER PRIMARY KEY AUTOINCREMENT, NOTE TEXT )';
+  fMapper.Query.ExecSQL;
+end;
+
+procedure TDataModule.saveNotesToDatabase(NoteText: string);
+begin
+  fMapper.Query.Text := 'INSERT INTO NOTES (NOTE) VALUES (:NoteText)';
+  fMapper.Query.Params.ParamByName('NoteText').AsString := NoteText;
+  fMapper.Query.ExecSQL;
+end;
+
+procedure TDataModule.SetDataUpMapping;
+begin
+  fMapper.Query := Query;
+  fMapper.connection := fConnection;
+  fMapper.
+end;
+
+procedure TDataModule.SetQuery(const AValue: TFDQuery);
+begin
+  fQuery := AValue;
+end;
+
+end.

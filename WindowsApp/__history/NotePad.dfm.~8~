@@ -1,0 +1,62 @@
+object FrmNotes: TFrmNotes
+  Left = 0
+  Top = 0
+  Caption = 'FrmNotes'
+  ClientHeight = 542
+  ClientWidth = 1077
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object SynEdit1: TSynEdit
+    Left = 0
+    Top = 0
+    Width = 1077
+    Height = 542
+    Align = alClient
+    Color = cl3DLight
+    ActiveLineColor = clCream
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Courier New'
+    Font.Style = []
+    TabOrder = 0
+    TabStop = False
+    CodeFolding.CollapsedLineColor = clGrayText
+    CodeFolding.FolderBarLinesColor = clGrayText
+    CodeFolding.ShowCollapsedLine = True
+    CodeFolding.IndentGuidesColor = clGray
+    CodeFolding.IndentGuides = True
+    UseCodeFolding = False
+    BorderStyle = bsNone
+    Gutter.AutoSize = True
+    Gutter.BorderStyle = gbsNone
+    Gutter.Color = clBackground
+    Gutter.Cursor = crArrow
+    Gutter.Font.Charset = DEFAULT_CHARSET
+    Gutter.Font.Color = clWindowText
+    Gutter.Font.Height = -11
+    Gutter.Font.Name = 'Courier New'
+    Gutter.Font.Pitch = fpFixed
+    Gutter.Font.Style = [fsBold, fsUnderline]
+    Gutter.Font.Quality = fqAntialiased
+    Gutter.LeftOffset = 1
+    Gutter.ShowLineNumbers = True
+    Gutter.Width = 10
+    Gutter.Gradient = True
+    Gutter.GradientStartColor = clBackground
+    Lines.Strings = (
+      'SynEdit1')
+    Options = [eoAutoIndent, eoDragDropEditing, eoEnhanceEndKey, eoGroupUndo, eoScrollPastEol, eoShowScrollHint, eoSmartTabDelete, eoSmartTabs, eoTabsToSpaces, eoTrimTrailingSpaces]
+    TabWidth = 2
+    WantTabs = True
+    WordWrap = True
+    FontSmoothing = fsmClearType
+  end
+end

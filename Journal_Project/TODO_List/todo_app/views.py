@@ -1,6 +1,6 @@
 from typing import Any
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .models import ToDoList, ToDoItem
+from .models import ToDoList, ToDoItem, Journal
 from django.urls import reverse_lazy, reverse
 from .forms import ToDoItemForm
 
@@ -89,6 +89,19 @@ class NotesView(ListView):
 
     # def get_queryset(self):
     #     return ToDoItem.objects.filter(due__lte=timezone.now())
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context["title"] = "Dashboard"
+    #     return context
+    
+class DashboardView(ListView):
+    model = Journal
+    template_name = 'todo_app/dashboard.html'
+    context_object_name = 'journal_list'
+    ordering = ['-created_date']
+    # def get_queryset(self):
+    #     return ToDoList.objects.all()
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)

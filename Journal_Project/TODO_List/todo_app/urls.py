@@ -13,4 +13,5 @@ urlpatterns = [
     path('list/<int:list_id>/item/<int:pk>/update/', views.ItemUpdateView.as_view(), name='ItemUpdate'),
     path('list/<int:list_id>/item/<int:pk>/delete/', views.ItemDeleteView.as_view(), name='item-delete'),
     path('Notepad/', views.NotesView.as_view(), name='Notepad'),
+    path('Dashboard/', views.DashboardView.as_view(), name='Dashboard'),
 ]#+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

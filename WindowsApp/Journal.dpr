@@ -2,13 +2,14 @@ program Journal;
 
 uses
   Vcl.Forms,
-  unit1 in 'unit1.pas' {Form1};
+  DataConnUnit in 'DataConnUnit.pas' {FrmDataConnector};
+//  notes in 'notes.pas';
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFrmDataConnector, DataConnector);
   Application.Run;
 end.

@@ -99,8 +99,8 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="unit1.pas">
-            <Form>Form1</Form>
+        <DCCReference Include="DataConnUnit.pas">
+            <Form>FrmDataConnector</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

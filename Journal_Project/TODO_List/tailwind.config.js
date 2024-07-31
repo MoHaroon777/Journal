@@ -4,7 +4,11 @@ module.exports = {
     './todo_app/templates/**/*.html',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Arial', 'Helvetica', 'Verdana', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }

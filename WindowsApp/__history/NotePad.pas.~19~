@@ -1,0 +1,59 @@
+unit NotePad;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, SynEdit, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls, SynEditHighlighter, MarkdownHighlighter,
+  SynHighlighterGeneral;
+
+type
+  TFrmNotes = class(TForm)
+    SynEdit1: TSynEdit;
+    SynGeneralSyn1: TSynGeneralSyn;
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmNotes: TFrmNotes;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrmNotes.FormCreate(Sender: TObject);
+begin
+  SynEdit1 := TSynEdit.Create(Self);
+  SynEdit1.Parent := Self;
+  SynEdit1.Align := alClient;
+  SynEdit1.Highlighter := TSynMarkdownSyn.Create(Self);
+  SynEdit1.Text := '# Header'#13#10'**Bold text** and _italic text_ [Link](http://example.com)';
+
+   //Style
+   with SynEdit1 do begin
+    ActiveLineColor := clCream;
+    Gutter.AutoSize := True;
+    //Gutter.BorderStyle := None;
+    Gutter.Color := clBackground;
+    Gutter.Gradient := True;
+    Gutter.GradientStartColor := clBtnFace;
+    Gutter.GradientEndColor := clBackground;
+    Gutter.ShowLineNumbers := True;
+    WordWrap := True;
+    WantTabs := True;
+    WantReturns := True;
+   end;
+end;
+
+procedure TFrmNotes.FormDestroy(Sender: TObject);
+begin
+  SynEdit1.Free;
+end;
+
+end.
+

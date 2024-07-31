@@ -1,0 +1,62 @@
+{% comment %} {% extends "base.html" %} {% endcomment %}
+{% load static %}
+{% block sidebar %}
+<div class="w-64 h-screen bg-white shadow-lg">
+    <div class="flex items-center justify-center h-30 border-b">
+        <img width="100" height="100" src="{% static 'img/journal.svg' %}" alt="journal"/>
+    </div>
+    <div>
+        {% url Dashboard as dashboard_url %}
+        <a href="{% url 'Dashboard' %}" style='text-decoration: none;'>
+        <div class="flex items-center px-4 py-2 text-gray-700 active:bg-gray-100 hover:bg-gray-100 rounded-lg {% if request.path == dashboard_url %}bg-gray-100{% endif %}">
+            <img width="45" height="45" src="{% static 'img/dashboard.svg' %}" alt="dashboard"/>
+            <span class="ml-4">Dashboard</span>
+        </div>
+        <a href="{% url 'Notepad' %}" style='text-decoration: none;'>
+        <div class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg" href="{% url 'Notepad' %}">
+            <img  width="45" height="45" src="{% static 'img/notes.svg' %}" alt="dashboard"/>
+            <span class="ml-4">NotePad</span>
+        </div>
+        </a>
+        <div class="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            <img width="45" height="45" src="{% static 'img/team.svg' %}" alt="Team"/>
+            <span class="ml-4">Team</span>
+        </div>
+        <div class="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            <img width="45" height="45" src="{% static 'img/project.svg' %}" alt="Project"/>
+            <span class="ml-4">Projects</span>
+        </div>
+        <div class="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            <img width="45" height="45" src="{% static 'img/calendar.svg' %}" alt="calendar"/>
+            <span class="ml-4">Calendar</span>
+        </div>
+        <div class="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            <img width="45" height="40" src="{% static 'img/document.svg' %}" alt="documents"/>
+            <span class="ml-4">Documents</span>
+        </div>
+        <div class="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            <img width="45" height="40" src="{% static 'img/report.svg' %}" alt="report"/>
+            <span class="ml-4">Reports</span>
+        </div>
+    </div>
+    <div class="mt-5">
+        <h6 class="px-4 text-xs font-bold uppercase text-gray-600" >Your teams <img class="flex" width="45" height="45" src="{% static 'img/beta.svg' %}" alt="beta"/></h6>
+        
+        {% comment %} <div class="px-4 mt-2">
+            <div class="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                <span class="flex items-center justify-center w-6 h-6 text-xs font-bold text-gray-700 bg-gray-300 rounded-full">H</span>
+                <span class="ml-4">Heroicons</span>
+            </div>
+            <div class="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                <span class="flex items-center justify-center w-6 h-6 text-xs font-bold text-gray-700 bg-gray-300 rounded-full">T</span>
+                <span class="ml-4">Tailwind Labs</span>
+            </div>
+            <div class="flex items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                <span class="flex items-center justify-center w-6 h-6 text-xs font-bold text-gray-700 bg-gray-300 rounded-full">W</span>
+                <span class="ml-4">Workcation</span>
+            </div>
+
+        </div> {% endcomment %}
+    </div>
+</div>
+{% endblock %}

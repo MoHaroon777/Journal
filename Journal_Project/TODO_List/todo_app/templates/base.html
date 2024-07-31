@@ -17,9 +17,9 @@
     {% bootstrap_css %}
 </head>
 
-<body class='flex'>
+<body class='flex base_background font-sans'>
     <div class="sidebar"> 
-        {% include "dashboard.html" %}
+        {% include "sidebar.html" %}
     </div>
     <div class="content" style="width: calc(100vw - 100px)">
         {% block content %}

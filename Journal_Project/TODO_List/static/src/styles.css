@@ -568,3 +568,13 @@ video {
 .editor {
   height: calc(100vh - 100px); /* Adjust 100px to account for other elements */
   width: calc(80vw - 100px);
+}
+.base_background {
+  background-color: #f3f4f6;
+}
+.active_url {
+  color: gray-100;
+}
+.bottom-right {
+  justify-content: flex-end;
+}

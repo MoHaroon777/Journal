@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/01/31 18:08:57.000.034,=C:\Users\mohamud.haroon\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/01/31 18:09:51.000.123,=C:\Users\mohamud.haroon\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/06/13 12:03:14.000.121,=C:\Users\mohamud.haroon\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/07/31 12:39:33.000.055,=C:\Users\mohamud.haroon\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/07/31 12:42:29.000.021,C:\Users\mohamud.haroon\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Journal\WindowsApp\NotesJournal.pas</Transaction>
+    <Transaction>2024/07/31 12:42:29.000.021,C:\Users\mohamud.haroon\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Journal\WindowsApp\NotesJournal.dfm</Transaction>
+    <Transaction>2024/07/31 12:51:56.000.926,C:\Users\mohamud.haroon\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Journal\WindowsApp\JournalNotesProject.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

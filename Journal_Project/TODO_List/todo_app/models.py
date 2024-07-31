@@ -6,12 +6,6 @@ from markdownfield.models import MarkdownField, RenderedMarkdownField
 from markdownfield.validators import VALIDATOR_CLASSY
 from markdownfield.validators import Validator
 
-VALIDATOR_COMMENTS = Validator(
-    allowed_tags=["b", "i", "strong", "em"],
-    allowed_attrs={},
-    linkify=False
-)
-
 def one_week_hence():
     return timezone.now() + timezone.timedelta(days=7)
 
@@ -43,6 +37,25 @@ class ToDoItem(models.Model):
     class Meta:
         ordering = ["due"]
         
-class Editor(models.Model):
-    text = MarkdownField(rendered_field='rendered_text', validators=[Validator])
-    rendered_text = RenderedMarkdownField()
+
+class Journal(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField(null=True, unique=False)
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+    content = MarkdownField()
+    is_pinned = models.BooleanField(default=False)
+    # is_deleted = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.title
+    
+
+# class Author(models.Model):
+#     name = models.CharField(max_length=100)
+#     email = models.EmailField()
+#     phone = models.CharField(max_length=20)
+#     image_url = models.URLField(blank=True, null=True)
+
+#     def __str__(self):
+#         return self.name
