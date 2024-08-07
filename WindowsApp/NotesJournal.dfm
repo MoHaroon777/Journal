@@ -10,7 +10,10 @@ object NotepadJournal: TNotepadJournal
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  Menu = MainMenu1
   OldCreateOrder = False
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -41,10 +44,43 @@ object NotepadJournal: TNotepadJournal
     Gutter.Width = 15
     Lines.Strings = (
       'seNotePad')
+    WantReturns = False
     FontSmoothing = fsmNone
-    ExplicitLeft = 112
-    ExplicitTop = 72
-    ExplicitWidth = 200
-    ExplicitHeight = 150
+    ExplicitTop = -8
+  end
+  object MainMenu1: TMainMenu
+    Left = 160
+    Top = 56
+    object NewNote1: TMenuItem
+      Caption = 'New'
+      ShortCut = 16462
+      OnClick = NewNote1Click
+    end
+    object Open1: TMenuItem
+      Caption = 'Open'
+      OnClick = Open1Click
+    end
+    object Save1: TMenuItem
+      Caption = 'Save'
+      ShortCut = 16467
+      OnClick = Save1Click
+    end
+    object Commit1: TMenuItem
+      Caption = 'Commit'
+      OnClick = Commit1Click
+    end
+    object erminal1: TMenuItem
+      Caption = 'Terminal'
+      ShortCut = 16468
+      OnClick = erminal1Click
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 256
+    Top = 136
+  end
+  object SaveDialog1: TSaveDialog
+    Left = 264
+    Top = 96
   end
 end
