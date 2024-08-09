@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/01/31 18:08:57.000.034,=C:\Users\mohamud.haroon\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/01/31 18:09:51.000.123,=C:\Users\mohamud.haroon\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/06/13 12:03:14.000.121,=C:\Users\mohamud.haroon\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/08/07 13:35:49.000.691,=C:\Users\mohamud.haroon\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/08/07 13:36:36.000.004,C:\sourceCode\Journal\WindowsApp\uMessageForm.pas=C:\Users\mohamud.haroon\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/08/07 13:36:36.000.004,C:\sourceCode\Journal\WindowsApp\uMessageForm.dfm=C:\Users\mohamud.haroon\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2024/08/07 14:28:43.000.064,C:\sourceCode\Journal\WindowsApp\MessageForm.dproj=C:\Users\mohamud.haroon\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="uMessageForm.pas"/>
+    <File Path="uMessageForm.dfm"/>
+  </ProjectSortOrder>
+</BorlandProject>

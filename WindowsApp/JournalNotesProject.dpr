@@ -2,7 +2,9 @@ program JournalNotesProject;
 
 uses
   Vcl.Forms,
-  NotesJournal in 'NotesJournal.pas' {NotepadJournal};
+  NotesJournal in 'NotesJournal.pas' {NotepadJournal},
+  Vcl.Themes,
+  Vcl.Styles;
 
 {$R *.res}
 

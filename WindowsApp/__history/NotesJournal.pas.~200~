@@ -1,0 +1,293 @@
+unit NotesJournal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.UITypes, Vcl.ToolWin, Vcl.ActnMan, Vcl.ActnCtrls, Vcl.ActnMenus, Vcl.Menus,
+  System.Classes, Vcl.Controls, SynEdit, System.Variants, Vcl.Graphics, SynHighlighterGeneral, Vcl.Forms, Vcl.Dialogs, Vcl.ExtDlgs, Vcl.StdCtrls, ShellAPI, StdStyleActnCtrls,
+  Vcl.ExtCtrls, Vcl.ActnColorMaps, Vcl.Tabs, Vcl.DockTabSet, System.Notification, uMessageForm, uRepoSetupForm;
+
+type
+  TNotepadJournal = class(TForm)
+    MainMenu1: TMainMenu;
+    muNew: TMenuItem;
+    muOpen: TMenuItem;
+    muSave: TMenuItem;
+    muCommit: TMenuItem; // New menu item for commit
+    OpenDialog1: TOpenDialog;
+    SaveDialog1: TSaveDialog;
+    muTerminal: TMenuItem;
+    muTools: TMenuItem;
+    miCalculator: TMenuItem;
+    VSCode1: TMenuItem;
+    Close1: TMenuItem;
+    AddMessage1: TMenuItem;
+    Push1: TMenuItem;
+    seNotePad: TSynEdit;
+    Setup1: TMenuItem;
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure muNewClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure muOpenClick(Sender: TObject);
+    procedure muSaveClick(Sender: TObject);
+    procedure muCommitClick(Sender: TObject); // Event handler for commit
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure muTerminalClick(Sender: TObject);
+    procedure miCalculatorClick(Sender: TObject);
+    procedure VSCode1Click(Sender: TObject);
+    procedure Close1Click(Sender: TObject);
+    procedure Push1Click(Sender: TObject);
+    procedure Setup1Click(Sender: TObject);
+  private
+    { Private declarations }
+    fGitMessage: string;
+    SyncGeneralHighlight: TSynGeneralSyn;
+    fFileIsSaved: boolean;
+    fGitRepo: string;
+    procedure SaveFile;
+    function GetFileDirectory: string;
+    function GetGitMessage: string;
+    procedure SetGitMessage(AValue: string);
+    function GetGitRepo: string;
+    procedure SetGitRepo(const AValue: string);
+  public
+    { Public declarations }
+    property GitMessage: string read GetGitMessage write SetGitMessage;
+    property FileIsSaved: boolean read fFileIsSaved write fFileIsSaved;
+    property GitRepoLink: string read GetGitRepo write SetGitRepo;
+  end;
+
+var
+  NotepadJournal: TNotepadJournal;
+
+implementation
+
+{$R *.dfm}
+
+procedure TNotepadJournal.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+var
+  DialogResult: Integer;
+begin
+  DialogResult := MessageDlg('Are you sure you want to close?', mtConfirmation, [mbYes, mbNo, mbCancel], 0);
+  if DialogResult = mrNo then
+    CanClose := False
+  else if DialogResult = mrYes then
+    CanClose := True
+  else if DialogResult = mrCancel then
+    CanClose := False;
+end;
+
+procedure TNotepadJournal.FormCreate(Sender: TObject);
+begin
+  SyncGeneralHighlight := TSynGeneralSyn.Create(Self);
+  seNotePad.Highlighter := SyncGeneralHighlight;
+  muSave.ShortCut := TextToShortCut('Ctrl+S');
+  muCommit.ShortCut := TextToShortCut('Ctrl+Shift+C'); // Optional shortcut for commit
+end;
+
+procedure TNotepadJournal.FormShow(Sender: TObject);
+begin
+  with seNotePad do
+  begin
+    Gutter.Width := 15;
+    Align := alClient;
+    ActiveLineColor := clCream;
+    Color := cl3DLight;
+    Ctl3D := false;
+    Enabled := True;
+    Font.Color := clWindowText;
+    Font.Name := 'Courier New';
+    Font.Size := 10;
+    Visible := true;
+    InsertMode := true;
+    Highlighter := SyncGeneralHighlight;
+
+    with Gutter do
+    begin
+      AutoSize := true;
+      Font.Color := clWindowText;
+      Font.Height := -11;
+      LineNumberStart := 1;
+      ShowLineNumbers := true;
+      Visible := true;
+    end;
+
+    WantTabs := true;
+    WantReturns := true;
+    TabWidth := 4;
+    Lines.Text := '';
+  end;
+end;
+
+procedure TNotepadJournal.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if (Shift = [ssCtrl]) and (Key = Ord('S')) then
+  begin
+    SaveFile;
+  end;
+end;
+
+procedure TNotepadJournal.muNewClick(Sender: TObject);
+var
+  NewNotepad: TNotepadJournal;
+begin
+  NewNotepad := TNotepadJournal.Create(Application);
+  NewNotepad.Show;
+end;
+
+procedure TNotepadJournal.muOpenClick(Sender: TObject);
+begin
+  if OpenDialog1.Execute then
+  begin
+    seNotePad.Lines.LoadFromFile(OpenDialog1.FileName);
+  end;
+end;
+
+procedure TNotepadJournal.muSaveClick(Sender: TObject);
+begin
+  SaveFile;
+end;
+
+procedure TNotepadJournal.SaveFile;
+begin
+  if SaveDialog1.Execute then
+  begin
+    seNotePad.Lines.SaveToFile(SaveDialog1.FileName);
+    FileIsSaved := true;
+  end;
+end;
+
+procedure TNotepadJournal.SetGitMessage(AValue: string);
+begin
+  fGitMessage := AValue;
+end;
+
+procedure TNotepadJournal.SetGitRepo(const AValue: string);
+begin
+  fGitRepo := AValue;
+end;
+
+procedure TNotepadJournal.Setup1Click(Sender: TObject);
+begin
+  RepoSetUpForm := TRepoSetupForm.Create(Self);
+  try
+    RepoSetUpForm.ShowModal;
+    RepoSetUpForm.edtRepoLink.Text := GitRepoLink;
+    if RepoSetUpForm.ModalResult = mrOk then
+    begin
+      GitRepoLink := RepoSetUpForm.fRepoLink;
+    end;
+  finally
+    RepoSetUpForm.Free;
+  end;
+end;
+
+procedure TNotepadJournal.VSCode1Click(Sender: TObject);
+begin
+  ShellExecute(0, 'OPEN', 'code', nil, nil, SW_HIDE);
+end;
+
+function TNotepadJournal.GetFileDirectory: string;
+begin
+  if SaveDialog1.FileName <> '' then
+    result := ExtractFilePath(SaveDialog1.FileName)
+  else if OpenDialog1.FileName <> '' then
+    result := ExtractFilePath(OpenDialog1.FileName)
+  else
+   result := '';
+end;
+
+function TNotepadJournal.GetGitMessage: string;
+begin
+  result := fGitMessage;
+end;
+
+function TNotepadJournal.GetGitRepo: string;
+begin
+  result := fGitRepo;
+end;
+
+procedure TNotepadJournal.miCalculatorClick(Sender: TObject);
+begin
+  ShellExecute(0, 'OPEN', 'calc', nil, nil, SW_HIDE);
+end;
+
+procedure TNotepadJournal.muCommitClick(Sender: TObject);
+//var
+//  CommitMessage, FileName, FileDirectory: string;
+//  GitAddCmd, GitCommitCmd, GitPushCmd: string;
+//  GitCommit: string;
+begin
+//  if SaveDialog1.FileName = '' then begin
+//    if not SaveDialog1.Execute then
+//      Exit;
+//    seNotePad.Lines.SaveToFile(SaveDialog1.FileName);
+//  end;
+//
+//  FileName := ExtractFileName(SaveDialog1.FileName);
+//  FileDirectory := GetFileDirectory;
+//  CommitMessage := 'Added ' + FileName;
+//
+//  if FileDirectory = '' then
+//  begin
+//    ShowMessage('File directory could not be determined.');
+//    Exit;
+//  end;
+//
+//  GitAddCmd := 'git add -A';
+//  GitCommitCmd := 'git commit -m ' + CommitMessage;
+//  GitPushCmd := 'git push';
+//  GitCommit := GitAddCmd + #13#10 + GitCommitCmd + #13#10 + GitPushCmd;
+//
+////  ShellExecute(0, 'OPEN', 'cmd.exe', PChar(GitAddCmd), PChar(FileDirectory), SW_HIDE);
+////  ShellExecute(0, 'OPEN', 'cmd.exe', PChar(GitCommitCmd), nil, SW_SHOWNORMAL);
+////  ShellExecute(0, 'OPEN', 'cmd.exe', PChar(GitPushCmd), nil, SW_SHOWNORMAL);
+//
+//  ShellExecute(0, 'OPEN', 'cmd.exe', PChar(GitCommit), PChar(FileDirectory), SW_SHOWNORMAL);
+//  ShowMessage('Changes committed with message: ' + CommitMessage);
+end;
+
+procedure TNotepadJournal.muTerminalClick(Sender: TObject);
+var
+  Dir: string;
+begin
+  Dir := GetFileDirectory;
+  ShellExecute(0, 'OPEN', 'cmd.exe', nil, PChar(Dir), SW_SHOWNORMAL);
+end;
+
+procedure TNotepadJournal.Push1Click(Sender: TObject);
+var
+  commitCMD: string;
+begin
+  commitCMD := ' git add -A ' + #13#10 +
+               ' git commit -m ' + GitMessage + #13#10 +
+               ' git push';
+  MessageForm := TMessageForm.Create(Self);
+  try
+    MessageForm.ShowModal;
+    if MessageForm.ModalResult = mrOk then
+    begin
+      GitMessage := MessageForm.fMessage;
+      ShellExecute(0, 'OPEN', 'cmd.exe', PChar(commitCMD), PChar(GetFileDirectory), SW_HIDE)
+    end;
+  finally
+    MessageForm.Free;
+  end;
+end;
+
+procedure TNotepadJournal.Close1Click(Sender: TObject);
+begin
+  Self.Close;
+end;
+
+procedure TNotepadJournal.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+  if Screen.FormCount = 1 then
+    Application.Terminate;
+end;
+
+end.
+

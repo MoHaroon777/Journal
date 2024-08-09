@@ -2,7 +2,7 @@ object NotepadJournal: TNotepadJournal
   Left = 0
   Top = 0
   Caption = 'NotepadJournal'
-  ClientHeight = 299
+  ClientHeight = 319
   ClientWidth = 635
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -22,7 +22,7 @@ object NotepadJournal: TNotepadJournal
     Left = 0
     Top = 0
     Width = 635
-    Height = 299
+    Height = 319
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -46,33 +46,64 @@ object NotepadJournal: TNotepadJournal
       'seNotePad')
     WantReturns = False
     FontSmoothing = fsmNone
-    ExplicitTop = -8
   end
   object MainMenu1: TMainMenu
-    Left = 160
-    Top = 56
-    object NewNote1: TMenuItem
+    Left = 176
+    Top = 72
+    object muNew: TMenuItem
       Caption = 'New'
       ShortCut = 16462
-      OnClick = NewNote1Click
+      OnClick = muNewClick
     end
-    object Open1: TMenuItem
+    object muOpen: TMenuItem
       Caption = 'Open'
-      OnClick = Open1Click
+      ShortCut = 16463
+      OnClick = muOpenClick
     end
-    object Save1: TMenuItem
+    object muSave: TMenuItem
       Caption = 'Save'
       ShortCut = 16467
-      OnClick = Save1Click
+      OnClick = muSaveClick
     end
-    object Commit1: TMenuItem
-      Caption = 'Commit'
-      OnClick = Commit1Click
+    object muCommit: TMenuItem
+      Caption = 'Git'
+      ShortCut = 16464
+      OnClick = muCommitClick
+      object AddMessage1: TMenuItem
+        Caption = 'Add Message'
+      end
+      object Push1: TMenuItem
+        Caption = 'Push'
+        OnClick = Push1Click
+      end
     end
-    object erminal1: TMenuItem
+    object muTerminal: TMenuItem
       Caption = 'Terminal'
       ShortCut = 16468
-      OnClick = erminal1Click
+      OnClick = muTerminalClick
+    end
+    object muTools: TMenuItem
+      Caption = 'Tools'
+      object miCalculator: TMenuItem
+        Caption = 'Calculator'
+        ShortCut = 16465
+        OnClick = miCalculatorClick
+      end
+      object VSCode1: TMenuItem
+        Caption = 'VS Code'
+        ShortCut = 16472
+        OnClick = VSCode1Click
+      end
+      object Setup1: TMenuItem
+        Caption = 'Add Repository Link'
+        ShortCut = 49223
+        OnClick = Setup1Click
+      end
+    end
+    object Close1: TMenuItem
+      Caption = 'Close'
+      ShortCut = 8219
+      OnClick = Close1Click
     end
   end
   object OpenDialog1: TOpenDialog
